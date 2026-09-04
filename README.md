@@ -4,4 +4,4 @@ Landningssida för ATV-Mässan i Färila, arrangerad av Dahlia Motor. Lördag 29
 
 Statisk HTML/CSS-sida (`index.html`), inga byggverktyg krävs. Kan publiceras direkt via GitHub Pages.
 
-Bakgrundsbilden i headern (`assets/hero.jpg`) är AI-genererad.
+Bakgrundsbilden i headern (`assets/header.jpg`) är ett flygfoto från mässområdet.
