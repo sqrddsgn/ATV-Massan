@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Dahlia Motor//ATV-Massan//SV
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:atv-massan-2027@dahliamotor.se
+DTSTAMP:20260924T000000Z
+DTSTART;VALUE=DATE:20270828
+DTEND;VALUE=DATE:20270829
+SUMMARY:ATV-Mässan i Färila
+LOCATION:Pellvägen 8\, Färila
+DESCRIPTION:Gratis inträde\, fri parkering och gratis utställarplatser. Arrangeras av Dahlia Motor.
+URL:https://sqrddsgn.github.io/ATV-Massan/
+END:VEVENT
+END:VCALENDAR
