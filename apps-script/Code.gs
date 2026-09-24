@@ -64,9 +64,13 @@ function doPost(e) {
   }
 }
 
+// Bump this when you change the script; it shows in the browser when you open the /exec URL,
+// so you can see which version is actually live.
+const VERSION = 'v3-text-columns';
+
 // Opening the /exec URL in a browser shows that the deployment is alive.
 function doGet() {
-  return json_({ ok: true, service: 'ATV-Mässan utställaranmälan' });
+  return json_({ ok: true, service: 'ATV-Mässan utställaranmälan', version: VERSION });
 }
 
 // Run once from the editor: creates the sheet + header row, formats the phone and organisation
@@ -102,6 +106,7 @@ const TEXT_COLUMNS = [4, 9]; // 1-based: Organisationsnummer, Telefon
 function appendRow_(sheet, row) {
   const r = sheet.getLastRow() + 1;
   TEXT_COLUMNS.forEach(function (col) { sheet.getRange(r, col).setNumberFormat('@'); });
+  SpreadsheetApp.flush(); // make sure the text format is applied before the values are written
   sheet.getRange(r, 1, 1, row.length).setValues([row]);
 }
 
