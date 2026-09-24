@@ -187,3 +187,4 @@ footer a:focus-visible { outline-color: var(--cream); }
   .form .row2 { grid-template-columns: 1fr; }
   .form .btn { justify-self: stretch; }
 }
+footer a.url { text-transform: none; letter-spacing: 0.02em; }
