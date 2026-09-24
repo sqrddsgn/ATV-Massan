@@ -16,6 +16,7 @@ const TURNOVER = {
   '2000000-20000000': '2 – 20 miljoner kr',
   '20000000+': '20 miljoner kr och uppåt'
 };
+const POWER = { '10A': 2400, '16A': 3200, '32A': 4000 };
 const TYPES = { foretag: 'Företag', ideell: 'Ideell förening / skola / liknande' };
 
 const HEADERS = [
@@ -48,7 +49,7 @@ function doPost(e) {
       clean_(p.phone, 40, true),
       clean_(p.description, 2000),
       clean_(p.space, 100),
-      p.power === 'ja' ? 'Ja' : 'Nej',
+      power_(p),
       clean_(p.message, 2000),
       'Ja'
     ];
@@ -66,7 +67,7 @@ function doPost(e) {
 
 // Bump this when you change the script; it shows in the browser when you open the /exec URL,
 // so you can see which version is actually live.
-const VERSION = 'v3-text-columns';
+const VERSION = 'v4-power';
 
 // Opening the /exec URL in a browser shows that the deployment is alive.
 function doGet() {
@@ -77,6 +78,15 @@ function doGet() {
 // number columns as plain text, and triggers the permission prompt.
 function setup() {
   formatTextColumns_(getSheet_());
+}
+
+// Chosen electricity connection as text for the sheet, e.g. "Ja – 16A (3 200 kr)".
+function power_(p) {
+  if (POWER.hasOwnProperty(p.power_amp)) {
+    const price = String(POWER[p.power_amp]).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    return 'Ja \u2013 ' + p.power_amp + ' (' + price + ' kr)';
+  }
+  return p.power === 'ja' ? 'Ja' : 'Nej'; // older form versions sent a plain checkbox
 }
 
 function validate_(p) {

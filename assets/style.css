@@ -94,6 +94,7 @@ p { text-wrap: pretty; }
 .fees { background: var(--ink); color: var(--cream); padding: clamp(24px, 4vw, 36px); }
 .fees caption { text-align: left; font-family: 'Bebas Neue', 'Barlow Condensed', sans-serif; font-size: 30px; line-height: 1; letter-spacing: 0.01em; text-transform: uppercase; padding-bottom: 18px; }
 .fees table { width: 100%; border-collapse: collapse; }
+.fees table + table { margin-top: 30px; }
 .fees th { text-align: left; font-size: 14px; font-weight: 600; color: #cfc6b4; padding: 0 0 10px; }
 .fees th:last-child, .fees td:last-child { text-align: right; white-space: nowrap; padding-left: 16px; }
 .fees td { padding: 14px 0; border-top: 1px solid #3a342b; font-size: 17px; line-height: 1.35; }

@@ -60,7 +60,16 @@
               <tr><td>20&nbsp;miljoner&nbsp;kr och uppåt</td><td>10 000 kr</td></tr>
             </tbody>
           </table>
-          <p class="note">Samtliga priser exklusive moms.</p>
+          <table>
+            <caption>El till montern</caption>
+            <thead><tr><th scope="col">Anslutning</th><th scope="col">Pris</th></tr></thead>
+            <tbody>
+              <tr><td>10A</td><td>2 400 kr</td></tr>
+              <tr><td>16A</td><td>3 200 kr</td></tr>
+              <tr><td>32A</td><td>4 000 kr</td></tr>
+            </tbody>
+          </table>
+          <p class="note">El tillkommer på utställaravgiften. Samtliga priser exklusive moms.</p>
           <p class="free">Ideella föreningar, sportklubbar, skolor och liknande verksamheter är varmt välkomna utan utställaravgift.</p>
         </div>
       </div>
@@ -128,12 +137,16 @@
               <input type="text" id="space" name="space" maxlength="100">
               <p class="help">Till exempel 3 &times; 3 meter.</p>
             </div>
-            <fieldset>
-              <legend>Behov <span class="opt">(valfritt)</span></legend>
-              <div class="choices">
-                <label class="choice"><input type="checkbox" name="power" value="ja"> <span>Vi behöver el</span></label>
-              </div>
-            </fieldset>
+            <div class="field">
+              <label class="lbl" for="power_amp">El till montern <span class="opt">(valfritt)</span></label>
+              <select id="power_amp" name="power_amp">
+                <option value="">Ingen el</option>
+                <option value="10A">10A &ndash; 2 400 kr</option>
+                <option value="16A">16A &ndash; 3 200 kr</option>
+                <option value="32A">32A &ndash; 4 000 kr</option>
+              </select>
+              <p class="help">Tillkommer på utställaravgiften.</p>
+            </div>
           </div>
 
           <div class="field">
@@ -180,11 +193,13 @@
 <script>
 (function () {
   var FEES = { '0-100000': 200, '100000-2000000': 1000, '2000000-20000000': 5000, '20000000+': 10000 };
+  var POWER = { '10A': 2400, '16A': 3200, '32A': 4000 };
   var form = document.getElementById('apply');
   var msg = document.getElementById('msg');
   var feebox = document.getElementById('feebox');
   var turnoverGroup = document.getElementById('turnover-group');
   var turnover = document.getElementById('turnover');
+  var powerSel = document.getElementById('power_amp');
   var submit = document.getElementById('submit');
   var done = document.getElementById('done');
 
@@ -202,12 +217,23 @@
     turnover.required = isCompany;
     if (!isCompany) turnover.value = '';
 
+    var parts = [];
+    var total = 0;
     if (type === 'ideell') {
-      feebox.hidden = false;
-      feebox.textContent = 'Ingen utställaravgift för ideella föreningar, sportklubbar, skolor och liknande.';
+      parts.push('Ingen utställaravgift för ideella föreningar, sportklubbar, skolor och liknande');
     } else if (isCompany && FEES[turnover.value]) {
+      parts.push('Utställaravgift: ' + krona(FEES[turnover.value]));
+      total += FEES[turnover.value];
+    }
+    if (POWER[powerSel.value]) {
+      parts.push('El ' + powerSel.value + ': ' + krona(POWER[powerSel.value]));
+      total += POWER[powerSel.value];
+    }
+    if (parts.length) {
+      var text = parts.join('. ') + '.';
+      if (parts.length > 1 && total > 0) text += ' Totalt: ' + krona(total) + '.';
       feebox.hidden = false;
-      feebox.textContent = 'Utställaravgift: ' + krona(FEES[turnover.value]) + ' exklusive moms.';
+      feebox.textContent = total > 0 ? text + ' Alla priser exklusive moms.' : text;
     } else {
       feebox.hidden = true;
       feebox.textContent = '';
