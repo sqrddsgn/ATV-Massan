@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bli utställare &middot; ATV-Mässan i Färila 2027</title>
+<meta name="description" content="Anmäl dig som utställare på ATV-Mässan i Färila 28 augusti 2027. Utställaravgiften baseras på omsättning; ideella föreningar, sportklubbar och skolor ställer ut utan avgift.">
+<meta name="theme-color" content="#1a1611">
+<link rel="canonical" href="https://sqrddsgn.github.io/ATV-Massan/utstallare.html">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:site_name" content="ATV-Mässan i Färila">
+<meta property="og:title" content="Bli utställare &middot; ATV-Mässan i Färila 2027">
+<meta property="og:description" content="Anmäl dig som utställare 28 augusti 2027. Ideella föreningar, sportklubbar och skolor ställer ut utan avgift.">
+<meta property="og:url" content="https://sqrddsgn.github.io/ATV-Massan/utstallare.html">
+<meta property="og:image" content="https://sqrddsgn.github.io/ATV-Massan/assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap">
+
+<script>
+  // Paste the Web app URL from the Google Apps Script deployment here (see apps-script/README.md).
+  window.ATV_FORM_ENDPOINT = '';
+</script>
+</head>
+<body>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="top">
+      <a href="./" aria-label="ATV-Mässan i Färila, till startsidan"><img src="assets/logo-vertical-white.svg" alt="ATV-Mässan i Färila"></a>
+      <a href="./">&larr; Till startsidan</a>
+    </div>
+    <div>
+      <h1 class="display">Bli utställare 2027</h1>
+      <p>ATV-Mässan i Färila, lördag 28 augusti 2027, Pellvägen 8. Fyll i formuläret så hör vi av oss.</p>
+    </div>
+  </div>
+</header>
+
+<div class="stripe" aria-hidden="true"></div>
+
+<main>
+  <section class="section">
+    <div class="wrap split">
+
+      <div class="apply-info">
+        <p>Vi vill ha ett brett och mångsidigt utbud inom skog, friluftsliv, terrängfordon och allt däromkring. För företag baseras utställaravgiften på omsättningen.</p>
+        <div class="fees">
+          <table>
+            <caption>Utställaravgift 2027</caption>
+            <thead><tr><th scope="col">Företagets omsättning</th><th scope="col">Avgift</th></tr></thead>
+            <tbody>
+              <tr><td>0 &ndash; 100&nbsp;000&nbsp;kr</td><td>200 kr</td></tr>
+              <tr><td>100&nbsp;000&nbsp;kr &ndash; 2&nbsp;miljoner&nbsp;kr</td><td>1 000 kr</td></tr>
+              <tr><td>2 &ndash; 20&nbsp;miljoner&nbsp;kr</td><td>5 000 kr</td></tr>
+              <tr><td>20&nbsp;miljoner&nbsp;kr och uppåt</td><td>10 000 kr</td></tr>
+            </tbody>
+          </table>
+          <p class="note">Samtliga priser exklusive moms.</p>
+          <p class="free">Ideella föreningar, sportklubbar, skolor och liknande verksamheter är varmt välkomna utan utställaravgift.</p>
+        </div>
+      </div>
+
+      <div>
+        <form class="form" id="apply" novalidate>
+          <div class="form-msg" id="msg" role="alert" hidden></div>
+
+          <fieldset>
+            <legend>Vad är ni för typ av utställare?</legend>
+            <div class="choices">
+              <label class="choice"><input type="radio" name="type" value="foretag" required> <span>Företag</span></label>
+              <label class="choice"><input type="radio" name="type" value="ideell" required> <span>Ideell förening, sportklubb, skola eller liknande <small>Ingen utställaravgift</small></span></label>
+            </div>
+          </fieldset>
+
+          <div class="field" id="turnover-group" hidden>
+            <label class="lbl" for="turnover">Företagets omsättning</label>
+            <select id="turnover" name="turnover">
+              <option value="">Välj omsättning&hellip;</option>
+              <option value="0-100000">0 &ndash; 100 000 kr</option>
+              <option value="100000-2000000">100 000 kr &ndash; 2 miljoner kr</option>
+              <option value="2000000-20000000">2 &ndash; 20 miljoner kr</option>
+              <option value="20000000+">20 miljoner kr och uppåt</option>
+            </select>
+          </div>
+
+          <div class="feebox" id="feebox" aria-live="polite" hidden></div>
+
+          <div class="row2">
+            <div class="field">
+              <label class="lbl" for="company">Företag eller förening</label>
+              <input type="text" id="company" name="company" autocomplete="organization" maxlength="200" required>
+            </div>
+            <div class="field">
+              <label class="lbl" for="orgnr">Organisationsnummer <span class="opt">(valfritt)</span></label>
+              <input type="text" id="orgnr" name="orgnr" inputmode="numeric" maxlength="40">
+            </div>
+          </div>
+
+          <div class="row2">
+            <div class="field">
+              <label class="lbl" for="name">Kontaktperson</label>
+              <input type="text" id="name" name="name" autocomplete="name" maxlength="200" required>
+            </div>
+            <div class="field">
+              <label class="lbl" for="phone">Telefon</label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" maxlength="40" required>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="lbl" for="email">E-post</label>
+            <input type="email" id="email" name="email" autocomplete="email" maxlength="200" required>
+          </div>
+
+          <div class="field">
+            <label class="lbl" for="description">Vad vill ni visa eller sälja?</label>
+            <textarea id="description" name="description" maxlength="2000" required></textarea>
+          </div>
+
+          <div class="row2">
+            <div class="field">
+              <label class="lbl" for="space">Ungefärligt ytbehov <span class="opt">(valfritt)</span></label>
+              <input type="text" id="space" name="space" maxlength="100">
+              <p class="help">Till exempel 3 &times; 3 meter.</p>
+            </div>
+            <fieldset>
+              <legend>Behov <span class="opt">(valfritt)</span></legend>
+              <div class="choices">
+                <label class="choice"><input type="checkbox" name="power" value="ja"> <span>Vi behöver el</span></label>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="field">
+            <label class="lbl" for="message">Övrigt <span class="opt">(valfritt)</span></label>
+            <textarea id="message" name="message" maxlength="2000"></textarea>
+          </div>
+
+          <div class="hp" aria-hidden="true">
+            <label>Lämna det här fältet tomt <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+          </div>
+
+          <label class="choice"><input type="checkbox" name="consent" value="ja" required> <span>Jag godkänner att Dahlia Motor sparar mina uppgifter för att hantera anmälan.</span></label>
+
+          <button class="btn btn-primary" type="submit" id="submit">Skicka anmälan</button>
+        </form>
+
+        <div class="done" id="done" tabindex="-1" hidden>
+          <h2 class="display">Tack för din anmälan!</h2>
+          <p>Vi har tagit emot uppgifterna och hör av oss så snart vi har gått igenom dem.</p>
+          <p>Frågor under tiden? Ring <a href="tel:0702516658">070-251 66 58</a> eller mejla <a href="mailto:info@dahliamotor.se">info@dahliamotor.se</a>.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<div class="stripe" aria-hidden="true"></div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <img src="assets/logo.svg" alt="ATV-Mässan i Färila">
+      <div class="foot-links">
+        <a href="./">Startsidan</a>
+        <a href="https://www.facebook.com/profile.php?id=61579975665063">Facebook</a>
+        <a href="https://dahliamotor.se">dahliamotor.se</a>
+      </div>
+    </div>
+    <div class="foot-bottom">Arrangeras av Dahlia Motor, Pellvägen 8, Färila &nbsp;&middot;&nbsp; info@dahliamotor.se &nbsp;&middot;&nbsp; 070-251 66 58</div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var FEES = { '0-100000': 200, '100000-2000000': 1000, '2000000-20000000': 5000, '20000000+': 10000 };
+  var form = document.getElementById('apply');
+  var msg = document.getElementById('msg');
+  var feebox = document.getElementById('feebox');
+  var turnoverGroup = document.getElementById('turnover-group');
+  var turnover = document.getElementById('turnover');
+  var submit = document.getElementById('submit');
+  var done = document.getElementById('done');
+
+  function selectedType() {
+    var r = form.querySelector('input[name="type"]:checked');
+    return r ? r.value : '';
+  }
+
+  function krona(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' kr'; }
+
+  function refresh() {
+    var type = selectedType();
+    var isCompany = type === 'foretag';
+    turnoverGroup.hidden = !isCompany;
+    turnover.required = isCompany;
+    if (!isCompany) turnover.value = '';
+
+    if (type === 'ideell') {
+      feebox.hidden = false;
+      feebox.textContent = 'Ingen utställaravgift för ideella föreningar, sportklubbar, skolor och liknande.';
+    } else if (isCompany && FEES[turnover.value]) {
+      feebox.hidden = false;
+      feebox.textContent = 'Utställaravgift: ' + krona(FEES[turnover.value]) + ' exklusive moms.';
+    } else {
+      feebox.hidden = true;
+      feebox.textContent = '';
+    }
+  }
+
+  function showMessage(html) {
+    msg.innerHTML = html;
+    msg.hidden = false;
+    msg.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }
+
+  form.addEventListener('change', refresh);
+  form.addEventListener('input', function () { if (!msg.hidden) msg.hidden = true; });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    msg.hidden = true;
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    var endpoint = window.ATV_FORM_ENDPOINT;
+    var fallback = 'Mejla oss gärna i stället på <a href="mailto:info@dahliamotor.se?subject=Ut%C3%A4llarplats%20ATV-M%C3%A4ssan%202027">info@dahliamotor.se</a>.';
+    if (!endpoint) {
+      showMessage('Anmälningsformuläret är inte aktiverat än. ' + fallback);
+      return;
+    }
+
+    submit.disabled = true;
+    submit.textContent = 'Skickar…';
+
+    fetch(endpoint, { method: 'POST', body: new URLSearchParams(new FormData(form)) })
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        if (!data || !data.ok) throw new Error((data && data.error) || 'Okänt fel');
+        form.hidden = true;
+        done.hidden = false;
+        done.focus();
+        done.scrollIntoView({ block: 'start', behavior: 'smooth' });
+      })
+      .catch(function (err) {
+        var text = (err && err.message && err.message !== 'Failed to fetch') ? err.message + ' ' : 'Något gick fel när anmälan skulle skickas. ';
+        showMessage(text + fallback);
+        submit.disabled = false;
+        submit.textContent = 'Skicka anmälan';
+      });
+  });
+
+  refresh();
+})();
+</script>
+
+</body>
+</html>
