@@ -25,3 +25,4 @@ Opening the `/exec` URL in a browser should show `{"ok":true,...}`.
 - The fee is calculated from the chosen turnover band in the script, not trusted from the browser.
 - Anyone with the web app URL can post to it. A hidden honeypot field and server-side validation
   filter most junk; check the sheet occasionally.
+- Phone and organisation-number cells are stored as plain text so leading zeros are kept. Rows saved before this change may have lost the zero; retype them (or set the column format to "Plain text" first).

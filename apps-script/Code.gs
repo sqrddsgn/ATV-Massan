@@ -40,12 +40,12 @@ function doPost(e) {
       Utilities.formatDate(new Date(), TIMEZONE, 'yyyy-MM-dd HH:mm:ss'),
       TYPES[p.type],
       clean_(p.company, 200),
-      clean_(p.orgnr, 40),
+      clean_(p.orgnr, 40, true),
       isCompany ? TURNOVER[p.turnover] : '–',
       isCompany ? FEES[p.turnover] : 0,
       clean_(p.name, 200),
       clean_(p.email, 200),
-      clean_(p.phone, 40),
+      clean_(p.phone, 40, true),
       clean_(p.description, 2000),
       clean_(p.space, 100),
       p.power === 'ja' ? 'Ja' : 'Nej',
@@ -53,7 +53,7 @@ function doPost(e) {
       'Ja'
     ];
 
-    getSheet_().appendRow(row);
+    appendRow_(getSheet_(), row);
     notify_(row);
     return json_({ ok: true });
   } catch (err) {
@@ -69,9 +69,10 @@ function doGet() {
   return json_({ ok: true, service: 'ATV-Mässan utställaranmälan' });
 }
 
-// Run once from the editor: creates the sheet + header row and triggers the permission prompt.
+// Run once from the editor: creates the sheet + header row, formats the phone and organisation
+// number columns as plain text, and triggers the permission prompt.
 function setup() {
-  getSheet_();
+  formatTextColumns_(getSheet_());
 }
 
 function validate_(p) {
@@ -86,11 +87,28 @@ function validate_(p) {
   return '';
 }
 
-// Trim, cap length, and stop spreadsheet formula injection (=, +, -, @ at the start of a cell).
-function clean_(value, max) {
+// Trim and cap length. Unless the cell will be plain text, also stop spreadsheet formula
+// injection (=, +, -, @ at the start of a cell).
+function clean_(value, max, isText) {
   let s = String(value == null ? '' : value).trim().slice(0, max);
-  if (/^[=+\-@]/.test(s)) s = "'" + s;
+  if (!isText && /^[=+\-@]/.test(s)) s = "'" + s;
   return s;
+}
+
+// Columns that must stay text, otherwise Sheets turns 0701234567 into the number 701234567.
+const TEXT_COLUMNS = [4, 9]; // 1-based: Organisationsnummer, Telefon
+
+// Like appendRow, but marks the text columns as plain text before writing so leading zeros survive.
+function appendRow_(sheet, row) {
+  const r = sheet.getLastRow() + 1;
+  TEXT_COLUMNS.forEach(function (col) { sheet.getRange(r, col).setNumberFormat('@'); });
+  sheet.getRange(r, 1, 1, row.length).setValues([row]);
+}
+
+function formatTextColumns_(sheet) {
+  TEXT_COLUMNS.forEach(function (col) {
+    sheet.getRange(2, col, Math.max(sheet.getMaxRows() - 1, 1), 1).setNumberFormat('@');
+  });
 }
 
 function getSheet_() {
