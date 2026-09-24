@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ATV-Mässan i Färila &middot; 28 augusti 2027</title>
-<meta name="description" content="ATV-Mässan i Färila 28 augusti 2027 &mdash; gratis inträde, fri parkering och gratis utställarplatser. Prova terrängfordon, möt utställarna och häng med familjen.">
+<meta name="description" content="ATV-Mässan i Färila 28 augusti 2027 &mdash; gratis inträde och fri parkering. Prova terrängfordon, möt utställarna och häng med familjen.">
 <meta name="theme-color" content="#1a1611">
 <link rel="canonical" href="https://sqrddsgn.github.io/ATV-Massan/">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -13,7 +13,7 @@
 <meta property="og:locale" content="sv_SE">
 <meta property="og:site_name" content="ATV-Mässan i Färila">
 <meta property="og:title" content="ATV-Mässan i Färila &middot; 28 augusti 2027">
-<meta property="og:description" content="Gratis inträde, fri parkering och gratis utställarplatser. Prova terrängfordon, möt utställarna och häng med familjen.">
+<meta property="og:description" content="Gratis inträde och fri parkering. Prova terrängfordon, möt utställarna och häng med familjen.">
 <meta property="og:url" content="https://sqrddsgn.github.io/ATV-Massan/">
 <meta property="og:image" content="https://sqrddsgn.github.io/ATV-Massan/assets/og.jpg">
 <meta property="og:image:width" content="1200">
@@ -133,10 +133,20 @@
   .g-more .g-grid { margin-top: 24px; }
 
   /* exhibitor strip */
-  .cta { background: var(--orange); padding: 64px 6vw; }
-  .cta .wrap { display: flex; justify-content: space-between; align-items: center; gap: 32px; }
-  .cta h2 { font-size: clamp(30px, 4.4vw, 42px); line-height: 1.02; margin-bottom: 10px; max-width: 620px; }
-  .cta p { font-size: 17px; line-height: 1.5; color: #3a2510; max-width: 56ch; }
+  .cta { background: var(--orange); padding: clamp(48px, 7vw, 72px) 6vw; }
+  .cta .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 72px); align-items: start; }
+  .cta h2 { font-size: clamp(36px, 5.2vw, 52px); line-height: 1; margin-bottom: 20px; }
+  .cta p { font-size: 18px; line-height: 1.55; color: #2b1a0a; max-width: 46ch; margin-bottom: 14px; }
+  .cta .btn { margin-top: 14px; }
+  .fees { background: var(--ink); color: var(--cream); padding: clamp(24px, 4vw, 36px); }
+  .fees caption { text-align: left; font-family: 'Bebas Neue', 'Barlow Condensed', sans-serif; font-size: 30px; line-height: 1; letter-spacing: 0.01em; text-transform: uppercase; padding-bottom: 18px; }
+  .fees table { width: 100%; border-collapse: collapse; }
+  .fees th { text-align: left; font-size: 14px; font-weight: 600; color: #cfc6b4; padding: 0 0 10px; }
+  .fees th:last-child, .fees td:last-child { text-align: right; white-space: nowrap; padding-left: 16px; }
+  .fees td { padding: 14px 0; border-top: 1px solid #3a342b; font-size: 17px; line-height: 1.35; }
+  .fees td:last-child { font-family: 'Bebas Neue', 'Barlow Condensed', sans-serif; font-size: 32px; line-height: 1; color: var(--orange); }
+  .fees .note { font-size: 14px; color: #a39a89; margin: 12px 0 0; max-width: none; }
+  .fees .free { margin: 22px 0 0; padding-top: 20px; border-top: 1px solid #3a342b; font-size: 17px; line-height: 1.5; color: var(--cream); max-width: none; }
 
   /* practical info */
   .facts { border-top: 1px solid var(--rule); margin-bottom: 32px; }
@@ -164,7 +174,8 @@
     .perks li, .perks li + li { padding: 20px 0; border-left: 0; }
     .perks li + li { border-top: 1px solid var(--rule); }
     .hero-inner { min-height: 640px; }
-    .cta .wrap, .foot-top { flex-direction: column; align-items: flex-start; }
+    .cta .wrap { grid-template-columns: 1fr; }
+    .foot-top { flex-direction: column; align-items: flex-start; }
     .map { min-height: 320px; }
   }
   @media (max-width: 520px) {
@@ -191,7 +202,7 @@
       <h1 class="hero-title display">
         <span>Prova terrängfordon.</span>
         <span>Möt utställarna.</span>
-        <span>Allt gratis.</span>
+        <span>Gratis inträde.</span>
       </h1>
       <p class="hero-lead">Dahlia Motor bjuder in till en dag fylld av motorintresse, gemenskap och aktiviteter för hela familjen.</p>
       <div class="btn-row">
@@ -218,7 +229,7 @@
       </li>
       <li>
         <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#1a1611" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l4-8 5 4 4-9 5 13H3z"></path></svg>
-        <div><div class="display">Gratis utställarplats</div><small>för alla som vill visa upp sig</small></div>
+        <div><div class="display">Ideella ställer ut gratis</div><small>föreningar, klubbar och skolor</small></div>
       </li>
     </ul>
   </section>
@@ -297,10 +308,25 @@
   <section class="cta">
     <div class="wrap">
       <div>
-        <h2 class="display">Ställ ut hos oss &mdash; helt kostnadsfritt</h2>
+        <h2 class="display">Ställ ut hos oss</h2>
         <p>Jobbar du med skog, friluftsliv, terrängfordon eller något annat som passar in? Vi vill ha ett brett och mångsidigt utbud &mdash; hör av dig!</p>
+        <p>För företag baseras utställaravgiften på omsättningen, så att både mindre och större företag kan vara med på mässan till en rimlig kostnad.</p>
+        <a class="btn btn-dark" href="mailto:info@dahliamotor.se?subject=Ut%C3%A4llarplats%20ATV-M%C3%A4ssan%202027">Kontakta oss</a>
       </div>
-      <a class="btn btn-dark" href="mailto:info@dahliamotor.se?subject=Ut%C3%A4llarplats%20ATV-M%C3%A4ssan%202027">Kontakta oss</a>
+      <div class="fees">
+        <table>
+          <caption>Utställaravgift 2027</caption>
+          <thead><tr><th scope="col">Företagets omsättning</th><th scope="col">Avgift</th></tr></thead>
+          <tbody>
+            <tr><td>0 &ndash; 100&nbsp;000&nbsp;kr</td><td>200 kr</td></tr>
+            <tr><td>100&nbsp;000&nbsp;kr &ndash; 2&nbsp;miljoner&nbsp;kr</td><td>1 000 kr</td></tr>
+            <tr><td>2 &ndash; 20&nbsp;miljoner&nbsp;kr</td><td>5 000 kr</td></tr>
+            <tr><td>20&nbsp;miljoner&nbsp;kr och uppåt</td><td>10 000 kr</td></tr>
+          </tbody>
+        </table>
+        <p class="note">Samtliga priser exklusive moms.</p>
+        <p class="free">Ideella föreningar, sportklubbar, skolor och liknande verksamheter är varmt välkomna utan utställaravgift.</p>
+      </div>
     </div>
   </section>
 
