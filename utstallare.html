@@ -268,8 +268,30 @@
     submit.disabled = true;
     submit.textContent = 'Skickar…';
 
-    fetch(endpoint, { method: 'POST', body: new URLSearchParams(new FormData(form)) })
-      .then(function (res) { return res.json(); })
+    // Google's Apps Script address sometimes answers 404 or fails before our script runs; nothing is
+    // saved in that case, so it is safe to try again. Real answers from the script are never retried.
+    function wait(ms) { return new Promise(function (resolve) { setTimeout(resolve, ms); }); }
+
+    function send(attempt) {
+      return fetch(endpoint, { method: 'POST', body: new URLSearchParams(new FormData(form)) })
+        .then(function (res) {
+          return res.text().then(function (txt) {
+            var data = null;
+            try { data = JSON.parse(txt); } catch (e) {}
+            if (data) return data;
+            if (attempt >= 4) throw new Error('');
+            submit.textContent = 'Försöker igen…';
+            return wait(attempt * 1500).then(function () { return send(attempt + 1); });
+          });
+        }, function (err) {
+          // The request itself failed (offline, blocked). Retry once; it may or may not have arrived.
+          if (attempt >= 2) throw err;
+          submit.textContent = 'Försöker igen…';
+          return wait(1500).then(function () { return send(attempt + 1); });
+        });
+    }
+
+    send(1)
       .then(function (data) {
         if (!data || !data.ok) throw new Error((data && data.error) || 'Okänt fel');
         form.hidden = true;
